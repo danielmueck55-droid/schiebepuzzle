@@ -42,21 +42,35 @@
 
 
     /* =============================
-       DIFFICULTY SLIDER (C3)
+       DIFFICULTY SLIDER (RESPONSIVE)
     ============================== */
-    #difficultyBar {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      background: rgba(255,255,255,0.9);
-      padding: 6px;
-      border-radius: 14px;
-      gap: 6px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-      z-index: 50;
+
+    /* Desktop layout */
+   #difficultyBar {
+  position: relative;    /* no absolute positioning */
+  margin-top: 15px;      /* spacing under the puzzle */
+  display: flex;
+  flex-direction: row;   /* horizontal buttons look better below */
+  justify-content: center;
+  background: rgba(255,255,255,0.9);
+  padding: 8px 12px;
+  border-radius: 14px;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 50;
+}
+
+    /* Mobile: difficulty bar moves below puzzle */
+    @media (max-width: 600px) {
+      #difficultyBar {
+        position: relative;
+        right: 0;
+        top: 10px;
+        transform: none;
+        margin-top: 14px;
+        flex-direction: row;
+        justify-content: center;
+      }
     }
 
     .diffBtn {
@@ -82,7 +96,6 @@
       transform: scale(1.05);
       box-shadow: 0 0 8px rgba(179,0,0,0.5);
     }
-
 
 
     /* Snowflakes */
@@ -133,7 +146,7 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       margin-top: 20px;
       transition: all 0.8s ease;
-      position: relative;
+      position: relative; /* Important for placing difficulty bar */
     }
 
     #puzzle {
@@ -236,13 +249,6 @@
   <h2>Türchen 1 🎄🎁</h2>
 
 
-  <!-- Difficulty Slider (C3) -->
-  <div id="difficultyBar">
-    <button class="diffBtn active" data-steps="3">Easy</button>
-    <button class="diffBtn" data-steps="25">Medium</button>
-    <button class="diffBtn" data-steps="80">Hard</button>
-  </div>
-
 
   <div id="infoBar">
     <div class="miniLabel">
@@ -276,6 +282,12 @@
     <button id="restartButton" onclick="restartGame()">Neu starten</button>
   </div>
 
+ <!-- Difficulty Slider -->
+  <div id="difficultyBar">
+    <button class="diffBtn active" data-steps="3">Easy</button>
+    <button class="diffBtn" data-steps="25">Medium</button>
+    <button class="diffBtn" data-steps="80">Hard</button>
+  </div>
 
 
 <script>
